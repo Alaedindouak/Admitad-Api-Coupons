@@ -1,0 +1,33 @@
+parameters:
+
+services:
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            $clientId: '%env(CLIENT_ID)%'
+            $clientSecret: '%env(CLIENT_SECRET)%'
+
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+            - '../src/Tests/'
+
+#    serializer.encode.json.unescaped:
+#        class: Symfony\Component\Serializer\Encoder\JsonEncode
+#        arguments:
+#            - { "json_encode_options": !php/const JSON_UNESCAPED_UNICODE }
+#
+#    serializer.encoder.json:
+#        class: Symfony\Component\Serializer\Encoder\JsonEncoder
+#        arguments:
+#            - '@serializer.encode.json.unescaped'
+
+
+
+    admitad-api-client-auth:
+        class: App\Service\AdmitadApiClientAuth
+        public: true

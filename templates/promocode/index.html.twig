@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Promocode!{% endblock %}
+
+{% block body %}
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-3">
+        {% for promocode in promocodes %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="bd-placeholder-img card-img-top">
+                        <img src="{{ promocode.image }}" width="100%" height="200" alt="{{ promocode.name }}">
+                    </div>
+                    <div class="card-body">
+                        <p class="card-text">{{ promocode.name }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <a  class="btn btn-sm btn-outline-secondary" href="{{ path('admitad_show_promocode', {id: promocode.id}) }}">View</a>
+                            </div>
+                            <small class="text-muted">{{ promocode.dateStart|date("F jS \\a\\t g:ia") }}</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div class="d-flex justify-content-end mt-3">
+        {% do promocodes.setPageRange(2) %}
+        {{ knp_pagination_render(promocodes, 'pagination.html.twig') }}
+    </div>
+
+{% endblock %}

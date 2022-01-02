@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{ promocode.name}} {% endblock %}
+
+{% block body %}
+
+    <div class="row mt-4">
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{{ promocode.image }}" width="100%" height="200" alt="{{ promocode.name }}">
+                </div>
+
+                <div class="col p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">{{ promocode.name }}</strong>
+                    <h3 class="mb-0">{{ promocode.promocode }} | {{ promocode.discount }}</h3>
+                    <div class="mb-1 text-muted">{{ promocode.dateStart|date("F jS \\a\\t g:ia") }} - {{ promocode.dateEnd is empty ? "" : promocode.dateEnd|date("F jS \\a\\t g:ia")}}  </div>
+                    <p class="card-text mb-auto">{{ promocode.description }}</p>
+                    <div>
+                        <a href="{{ promocode.link }}" class="stretched-link" target="_blank">см. промокод </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
